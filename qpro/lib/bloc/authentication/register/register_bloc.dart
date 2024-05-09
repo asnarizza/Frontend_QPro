@@ -15,17 +15,24 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
 
     on<RegisterButtonPressed>((event, emit) async {
       emit(RegisterLoadingState());
-      String? result = (await repo.register(
-        event.name,
-        event.email,
-        event.password,
-      )) as String?;
-      if (result != null && result == '0') {
-        emit(RegisterSuccessState());
-      } else {
-        emit(RegisterFailState(message: 'Failed to register'));
+      try {
+        int result = await repo.register(
+          event.name,
+          event.email,
+          event.password,
+        );
+        if (result == 0) {
+          emit(RegisterSuccessState());
+        } else if (result == 1) {
+          emit(RegisterFailState(message: 'Registration failed: Invalid email address'));
+        } else if (result == 2) {
+          emit(RegisterFailState(message: 'Registration failed: Password is too weak'));
+        } else {
+          emit(RegisterFailState(message: 'Registration failed: Unknown error occurred'));
+        }
+      } catch (e) {
+        emit(RegisterFailState(message: 'Failed to register: $e'));
       }
     });
-
   }
 }

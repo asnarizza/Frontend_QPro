@@ -85,7 +85,7 @@ class AuthRepository{
         "name": name,
         "email": email,
         "password": password,
-        "roleId": 2,
+        //"roleId": 2,
       });
 
       print(body.toString());
