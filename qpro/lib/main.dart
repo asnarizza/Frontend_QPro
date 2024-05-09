@@ -33,7 +33,7 @@ class MyApp extends StatelessWidget {
         BlocProvider<AuthBloc>(
           create: (context) => AuthBloc(LoginInitState(), AuthRepository()),
         ),
-        BlocProvider<RegisterBloc>( // Provide RegisterBloc here
+        BlocProvider<RegisterBloc>(
           create: (context) => RegisterBloc(RegisterInitState(), AuthRepository()),
         ),
       ],
