@@ -19,10 +19,14 @@ class HomePage extends StatelessWidget {
           return HospitalCard(
             hospital: hospitals[index],
             onTap: () {
-              // Navigate to the page where users can view services at the selected hospital
+              // Navigate to the page where users can view services
+              // at the selected hospital
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => HospitalServicesPage(hospital: hospitals[index])),
+                MaterialPageRoute(
+                    builder:
+                        (context) => HospitalServicesPage(
+                            hospital: hospitals[index])),
               );
             },
           );
@@ -95,7 +99,8 @@ class HospitalServicesPage extends StatelessWidget {
             onTap: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => QueueStatusPage(service: service)),
+                MaterialPageRoute(
+                    builder: (context) => QueueStatusPage(service: service)),
               );
             },
           );

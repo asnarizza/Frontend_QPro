@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'display.dart';
+
 class QueueStatusPage extends StatelessWidget {
   final String service;
 
@@ -111,8 +113,16 @@ class QueueStatusPage extends StatelessWidget {
                 SizedBox(height: 30),
                 ElevatedButton(
                   onPressed: () {
-                    // Implement queuing logic here
-                    // This could navigate to a confirmation page with queue details
+                    // Navigate to the confirmation page
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => QueueDisplayPage(
+                        userQueueNumber: 1, // Replace with actual user queue number
+                        totalQueue: totalQueue,
+                        currentQueue: currentQueue,
+                        estimatedWaitingTime: estimatedWaitingTime,
+                      )),
+                    );
                   },
                   style: ElevatedButton.styleFrom(
                     primary: Colors.blue[700],
@@ -138,3 +148,4 @@ class QueueStatusPage extends StatelessWidget {
     );
   }
 }
+
