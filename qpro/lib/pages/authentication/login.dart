@@ -35,12 +35,18 @@ class _LoginScreenState extends State<LoginScreen> {
           if(state is LoginErrorState){
             return Padding(
               padding: const EdgeInsets.all(8.0),
-              child: Text(state.message, style: const TextStyle(color: Colors.redAccent, fontWeight: FontWeight.bold),),
+              child: Text(
+                state.message,
+                style: const TextStyle(
+                    color: Colors.redAccent,
+                    fontWeight: FontWeight.bold),),
             );
           } else if (state is LoginLoadingState){
             return Padding(
               padding: EdgeInsets.all(8.0),
-              child: Center(child: CircularProgressIndicator(color: Colors.grey,)),
+              child: Center(
+                  child: CircularProgressIndicator(
+                    color: Colors.grey,)),
             );
           } else{
             return Container();
@@ -56,8 +62,9 @@ class _LoginScreenState extends State<LoginScreen> {
             Navigator.pushAndRemoveUntil(
                 context, MaterialPageRoute(
               //builder: (context) => const RoutePage()), (Route<dynamic> route) => false
-                builder: (context) => HomePage()), (Route<dynamic> route) => false
-
+                builder: (context) =>
+                    HomePage()),
+                    (Route<dynamic> route) => false
             );
           }
         },
@@ -93,7 +100,10 @@ class _LoginScreenState extends State<LoginScreen> {
     return Container(
         child: TextButton(
           onPressed: (){
-            Navigator.push(context,MaterialPageRoute(builder: (context) => RegisterScreen(),));
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => RegisterScreen(),));
           },
           child: Text('Don\'t have an account? Sign up here', style: Theme.of(context).textTheme.bodyMedium,),
         )
@@ -185,68 +195,18 @@ class _LoginScreenState extends State<LoginScreen> {
           },
           style: ButtonStyle(
             shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                RoundedRectangleBorder( borderRadius: BorderRadius.circular(10.0),)
+                RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10.0),)
             ),
-            backgroundColor: MaterialStateProperty.all<Color>(Colors.orange),
+            backgroundColor: MaterialStateProperty.all<Color>(Colors.blue),
 
           ),
           child: const Padding(
             padding: EdgeInsets.all(12.0),
-            child: Text('SIGN IN', style: TextStyle(fontSize: 16),),
+            child: Text('LOG IN', style: TextStyle(fontSize: 16),),
           ),
         ),
       ),
     );
   }
 }
-
-// // Define the SignUpView class here
-// class SignUpView extends StatefulWidget {
-//   @override
-//   _SignUpViewState createState() => _SignUpViewState();
-// }
-
-// class _SignUpViewState extends State<SignUpView> {
-//   TextEditingController usernameController = TextEditingController();
-//   TextEditingController emailController = TextEditingController();
-//   TextEditingController passwordController = TextEditingController();
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       appBar: AppBar(
-//         title: Text('Sign Up'),
-//       ),
-//       body: Padding(
-//         padding: const EdgeInsets.all(24.0),
-//         child: Column(
-//           crossAxisAlignment: CrossAxisAlignment.start,
-//           children: [
-//             TextField(
-//               controller: usernameController,
-//               decoration: InputDecoration(labelText: 'Username'),
-//             ),
-//             SizedBox(height: 20),
-//             TextField(
-//               controller: emailController,
-//               decoration: InputDecoration(labelText: 'Email'),
-//             ),
-//             SizedBox(height: 20),
-//             TextField(
-//               controller: passwordController,
-//               decoration: InputDecoration(labelText: 'Password'),
-//               obscureText: true,
-//             ),
-//             SizedBox(height: 20),
-//             ElevatedButton(
-//               onPressed: () {
-//                 // Implement your sign up logic here
-//               },
-//               child: Text('Sign Up'),
-//             ),
-//           ],
-//         ),
-//       ),
-//     );
-//   }
-// }

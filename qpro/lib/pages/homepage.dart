@@ -1,53 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:qpro/pages/queue/status.dart';
 
 class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Hospital Queue System'),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              'Find a Hospital',
-              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-            ),
-            SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: () {
-                // Navigate to the page where users can select a hospital
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => HospitalListPage()),
-                );
-              },
-              child: Text('Find Hospitals'),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
 
-class HospitalListPage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    // Dummy hospital list for demonstration
-    List<String> hospitals = ['Hospital Melaka', 'Hospital Jasin', 'Hospital Alor Gajah'];
+    List<String> hospitals = [
+      'Hospital Melaka', 'Hospital Jasin', 'Hospital Alor Gajah'];
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Select a Hospital'),
+        title: Text('QPro'),
+        backgroundColor: Colors.blue[700],
       ),
       body: ListView.builder(
         itemCount: hospitals.length,
         itemBuilder: (context, index) {
-          return ListTile(
-            title: Text(hospitals[index]),
+          return HospitalCard(
+            hospital: hospitals[index],
             onTap: () {
               // Navigate to the page where users can view services at the selected hospital
               Navigator.push(
@@ -57,6 +27,38 @@ class HospitalListPage extends StatelessWidget {
             },
           );
         },
+      ),
+    );
+  }
+}
+
+class HospitalCard extends StatelessWidget {
+  final String hospital;
+  final VoidCallback onTap;
+
+  HospitalCard({required this.hospital, required this.onTap});
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      elevation: 4.0,
+      margin: EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(8.0),
+      ),
+      child: InkWell(
+        borderRadius: BorderRadius.circular(8.0),
+        onTap: onTap,
+        child: Padding(
+          padding: EdgeInsets.all(16.0),
+          child: Text(
+            hospital,
+            style: TextStyle(
+              fontSize: 18.0,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ),
       ),
     );
   }
@@ -79,6 +81,7 @@ class HospitalServicesPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text('Services at $hospital'),
+        backgroundColor: Colors.blue[700],
       ),
       body: GridView.count(
         crossAxisCount: 2,
@@ -136,49 +139,3 @@ class ServiceCard extends StatelessWidget {
   }
 }
 
-class QueueStatusPage extends StatelessWidget {
-  final String service;
-
-  QueueStatusPage({required this.service});
-
-  @override
-  Widget build(BuildContext context) {
-    // Dummy queue status for demonstration
-    int totalQueue = 10;
-    int currentQueue = 5;
-    int estimatedWaitingTime = 30; // in minutes
-
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Queue Status for $service'),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              'Total Queue: $totalQueue',
-              style: TextStyle(fontSize: 20),
-            ),
-            Text(
-              'Current Queue: $currentQueue',
-              style: TextStyle(fontSize: 20),
-            ),
-            Text(
-              'Estimated Waiting Time: $estimatedWaitingTime minutes',
-              style: TextStyle(fontSize: 20),
-            ),
-            SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: () {
-                // Implement queuing logic here
-                // This could navigate to a confirmation page with queue details
-              },
-              child: Text('Queue'),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}

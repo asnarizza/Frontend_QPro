@@ -41,7 +41,7 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         title: title,
         theme: ThemeData(
-            scaffoldBackgroundColor: Colors.yellow[100],
+            scaffoldBackgroundColor: Colors.lightBlue[100],
             fontFamily: 'Times New Roman',
             textTheme: TextTheme(
                 bodyMedium: TextStyle(

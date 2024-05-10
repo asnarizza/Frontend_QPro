@@ -177,7 +177,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
             shape: MaterialStateProperty.all<RoundedRectangleBorder>(
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
             ),
-            backgroundColor: MaterialStateProperty.all<Color>(Colors.orange),
+            backgroundColor: MaterialStateProperty.all<Color>(Colors.blue),
           ),
           child: const Padding(
             padding: EdgeInsets.all(12.0),

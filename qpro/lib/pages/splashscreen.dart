@@ -85,7 +85,7 @@ class _SplashState extends State<Splash> {
                 style: Theme.of(context).textTheme.bodyMedium,
               ),
               SizedBox(height: 5.0),
-              CircularProgressIndicator(color:  HexColor("#3c1e08")),
+              CircularProgressIndicator(color: Colors.lightBlue[100]),
 
             ],
           ),
