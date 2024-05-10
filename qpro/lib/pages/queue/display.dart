@@ -17,7 +17,7 @@ class QueueDisplayPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Queue Display'),
+        title: Text('Queue Ticket'),
         backgroundColor: Colors.blue[700],
       ),
       body: Center(

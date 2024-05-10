@@ -1,3 +1,4 @@
+import 'package:qpro/pages/authentication/forgot_pass.dart';
 import 'package:qpro/pages/authentication/register.dart';
 import 'package:qpro/pages/homepage.dart';
 import 'package:flutter/material.dart';
@@ -82,7 +83,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   _usernameField(),
                   const SizedBox(height: 10.0),
                   _passwordField(),
-                  //_forgotPassword(),
+                  _forgotPassword(),
                   msg,
                   const SizedBox(height: 30.0),
                   _loginButton(),
@@ -110,20 +111,25 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
-  // Widget _forgotPassword(){
-  //   return Container(
-  //     margin: EdgeInsets.only(top:10.0),
-  //     child:  Align(
-  //         alignment: Alignment.topRight,
-  //         child: TextButton(
-  //           onPressed: (){
-  //             Navigator.push(context, MaterialPageRoute(builder: (context) => const ForgotPwd()));
-  //           } ,
-  //           child: Text('Forgot password', style: Theme.of(context).textTheme.bodyMedium?.copyWith(decoration: TextDecoration.underline),),
-  //         )
-  //     ),
-  //   );
-  // }
+  Widget _forgotPassword(){
+    return Container(
+      margin: EdgeInsets.only(top:10.0),
+      child:  Align(
+          alignment: Alignment.topRight,
+          child: TextButton(
+            onPressed: (){
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const ForgotPasswordScreen()));
+            } ,
+            child: Text(
+              'Forgot password',
+              style: Theme.of(context).textTheme.bodyMedium,),
+          )
+      ),
+    );
+  }
 
   Widget _logoText(){
     return Padding(

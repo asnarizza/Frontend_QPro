@@ -121,6 +121,7 @@ class QueueStatusPage extends StatelessWidget {
                         totalQueue: totalQueue,
                         currentQueue: currentQueue,
                         estimatedWaitingTime: estimatedWaitingTime,
+
                       )),
                     );
                   },
