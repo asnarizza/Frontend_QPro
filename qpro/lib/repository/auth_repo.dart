@@ -9,7 +9,7 @@ class AuthRepository{
     var pref = await SharedPreferences.getInstance();
     try {
       // var url = Uri.parse(APIConstant.LoginURL);
-      var url = Uri.parse("http://10.131.77.249:8000/api/login");
+      var url = Uri.parse("http://192.168.1.106:8000/api/login");
 
       // to serialize the data Map to JSON
       var body = json.encode({

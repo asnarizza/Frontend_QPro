@@ -1,6 +1,6 @@
 class APIConstant {
 
-  static const String ipaddress = "http://10.131.77.249:8000";
+  static const String ipaddress = "http://192.168.1.106:8000";
 
   static const String URL = "${ipaddress}/api/";
 
