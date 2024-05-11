@@ -26,7 +26,7 @@ class HomePage extends StatelessWidget {
                 MaterialPageRoute(
                     builder:
                         (context) => HospitalServicesPage(
-                            hospital: hospitals[index])),
+                        hospital: hospitals[index])),
               );
             },
           );
@@ -76,10 +76,13 @@ class HospitalServicesPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // Dummy service list for demonstration
-    List<String> services = [
-      'Emergency Department', 'Cardiology', 'Dental',
-      'OB/GYN', 'Oncology', 'Outpatient', 'Orthopedics',
-      'Pharmacy', 'Neurology', 'Psychiatry', 'ENT', 'Others'
+    List<Map<String, dynamic>> services = [
+      {'name': 'Medical Checkup', 'icon': Icons.medical_services},
+      {'name': 'Prenatal Care', 'icon': Icons.pregnant_woman},
+      {'name': 'Breast Screening', 'icon': Icons.woman},
+      {'name': 'Physiotherapy', 'icon': Icons.accessibility},
+      {'name': 'Nutrition & Dietitian', 'icon': Icons.local_dining},
+      {'name': 'Psychiatry', 'icon': Icons.psychology}
     ];
 
     return Scaffold(
@@ -95,12 +98,13 @@ class HospitalServicesPage extends StatelessWidget {
         crossAxisSpacing: 16.0,
         children: services.map((service) {
           return ServiceCard(
-            service: service,
+            service: service['name'],
+            icon: service['icon'],
             onTap: () {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                    builder: (context) => QueueStatusPage(service: service)),
+                    builder: (context) => QueueStatusPage(service: service['name'])),
               );
             },
           );
@@ -112,9 +116,10 @@ class HospitalServicesPage extends StatelessWidget {
 
 class ServiceCard extends StatelessWidget {
   final String service;
+  final IconData icon;
   final VoidCallback onTap;
 
-  ServiceCard({required this.service, required this.onTap});
+  ServiceCard({required this.service, required this.icon, required this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -126,10 +131,16 @@ class ServiceCard extends StatelessWidget {
       child: InkWell(
         borderRadius: BorderRadius.circular(8.0),
         onTap: onTap,
-        child: Center(
-          child: Padding(
-            padding: EdgeInsets.all(16.0),
-            child: Text(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(
+              icon,
+              size: 40.0,
+              color: Colors.blue,
+            ),
+            SizedBox(height: 8.0),
+            Text(
               service,
               style: TextStyle(
                 fontSize: 18.0,
@@ -137,10 +148,9 @@ class ServiceCard extends StatelessWidget {
               ),
               textAlign: TextAlign.center,
             ),
-          ),
+          ],
         ),
       ),
     );
   }
 }
-

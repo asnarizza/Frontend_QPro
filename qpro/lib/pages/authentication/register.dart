@@ -16,6 +16,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
   // controller for input
   TextEditingController usernameController = TextEditingController();
+  TextEditingController phoneController = TextEditingController();
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
@@ -113,6 +114,25 @@ class _RegisterScreenState extends State<RegisterScreen> {
     );
   }
 
+  Widget _phoneField() {
+    return TextFormField(
+      controller: phoneController,
+      decoration: InputDecoration(
+        prefixIcon: Icon(Icons.phone, color: Colors.black),
+        hintText: 'Phone Number',
+        focusColor: Colors.black,
+        focusedBorder: OutlineInputBorder(
+          borderSide: BorderSide(color: Colors.black, width: 1.0),
+          borderRadius: BorderRadius.circular(10),
+        ),
+        enabledBorder: OutlineInputBorder(
+          borderSide: BorderSide(color: Colors.black, width: 1.0),
+          borderRadius: BorderRadius.circular(10),
+        ),
+      ),
+    );
+  }
+
   Widget _emailField() {
     return TextFormField(
       controller: emailController,
@@ -160,11 +180,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
         child: ElevatedButton(
           onPressed: () {
             if (usernameController.text.isNotEmpty &&
+                phoneController.text.isNotEmpty &&
                 emailController.text.isNotEmpty &&
                 passwordController.text.isNotEmpty) {
               registerBloc.add(
                 RegisterButtonPressed(
                   name: usernameController.text,
+                  phone: phoneController.text,
                   email: emailController.text,
                   password: passwordController.text,
                 ),

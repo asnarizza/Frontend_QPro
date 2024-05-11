@@ -74,7 +74,7 @@ class AuthRepository{
     }
   }
 
-  Future<int> register(String name, String email,
+  Future<int> register(String name, String phone, String email,
       String password) async{
     var pref = await SharedPreferences.getInstance();
     try{
@@ -83,6 +83,7 @@ class AuthRepository{
 
       var body = json.encode({
         "name": name,
+        "phone": phone,
         "email": email,
         "password": password,
         //"roleId": 2,

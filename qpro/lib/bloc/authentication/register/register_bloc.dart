@@ -18,6 +18,7 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
       try {
         int result = await repo.register(
           event.name,
+          event.phone,
           event.email,
           event.password,
         );
