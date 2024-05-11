@@ -26,7 +26,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
               'Enter your email address to reset your password.',
               style: TextStyle(fontSize: 18),
             ),
-            const SizedBox(height: 20),
+            const SizedBox(height: 30),
             TextField(
               controller: _emailController,
               decoration: InputDecoration(
@@ -43,19 +43,26 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
               ),
             ),
             const SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: () {
-                // Handle email submission for password reset
-              },
-              style: ElevatedButton.styleFrom(
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10.0),
+            Padding(
+              padding: const EdgeInsets.all(17.0),
+              child: SizedBox(
+                width: 400.0, // Adjust width as needed
+                height: 55.0, // Adjust height as needed
+                child: ElevatedButton(
+                  onPressed: () {
+                    // Handle email submission for password reset
+                  },
+                  style: ElevatedButton.styleFrom(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10.0),
+                    ),
+                    primary: Colors.blue,
+                  ),
+                  child: const Padding(
+                    padding: EdgeInsets.all(12.0),
+                    child: Text('SUBMIT', style: TextStyle(fontSize: 16)),
+                  ),
                 ),
-                primary: Colors.blue,
-              ),
-              child: const Padding(
-                padding: EdgeInsets.all(12.0),
-                child: Text('SUBMIT', style: TextStyle(fontSize: 16)),
               ),
             ),
           ],

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'display.dart';
+import 'ticket.dart';
 
 class QueueStatusPage extends StatelessWidget {
   final String service;
