@@ -73,6 +73,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   const SizedBox(height: 30.0),
                   _usernameField(),
                   const SizedBox(height: 10.0),
+                  _phoneField(),
+                  const SizedBox(height: 10.0),
                   _emailField(),
                   const SizedBox(height: 10.0),
                   _passwordField(),
