@@ -8,8 +8,7 @@ class AuthRepository{
   Future<int> login(String email, String password) async {
     var pref = await SharedPreferences.getInstance();
     try {
-      // var url = Uri.parse(APIConstant.LoginURL);
-      var url = Uri.parse("http://192.168.1.106:8000/api/login");
+      var url = Uri.parse(APIConstant.LoginURL);
 
       // to serialize the data Map to JSON
       var body = json.encode({
@@ -28,9 +27,13 @@ class AuthRepository{
         print(responseData['data']['token']);
         // Extract the token from the response data
         String token = responseData['data']['token'];
+        int userId = responseData['data']['user_id'];
+        int? roleId = responseData['data']['role_id'];
 
         // Store the token using shared preferences
         pref.setString("token", token);
+        pref.setInt("user_id", userId);
+        pref.setInt("role_id", roleId ?? 0);
         pref.setString("email", email);
         return 1;
       }

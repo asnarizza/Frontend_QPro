@@ -2,178 +2,227 @@ import 'package:flutter/material.dart';
 
 class QueueDisplayPage extends StatelessWidget {
   final int userQueueNumber;
-  final int totalQueue;
-  final int currentQueue;
-  final int estimatedWaitingTime;
+  final int? currentQueue;
+  final int? totalPeopleInQueue;
+  //
+  final VoidCallback? onQueueCalled;
 
   QueueDisplayPage({
     required this.userQueueNumber,
-    required this.totalQueue,
-    required this.currentQueue,
-    required this.estimatedWaitingTime,
+    this.currentQueue,
+    this.totalPeopleInQueue,
+    //
+    this.onQueueCalled,
   });
 
   @override
   Widget build(BuildContext context) {
+    int peopleInFront = currentQueue != null ? ((currentQueue! - userQueueNumber).clamp(0, double.infinity) as int) : 0;
+
     return Scaffold(
       appBar: AppBar(
         title: Text('Queue Ticket'),
-        backgroundColor: Colors.blue[700],
+        backgroundColor: Colors.teal,
       ),
-      body: Center(
-        child: ConstrainedBox(
-          constraints: BoxConstraints(
-            maxHeight: 500, // Set the maximum height here
-          ),
-          child: Container(
-            padding: EdgeInsets.all(25),
+      body: Stack(
+        children: [
+          Container(
             decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(10),
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.grey.withOpacity(0.5),
-                  spreadRadius: 3,
-                  blurRadius: 5,
-                  offset: Offset(0, 3),
-                ),
-              ],
+              gradient: LinearGradient(
+                colors: [Colors.teal.shade100, Colors.teal.shade500],
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+              ),
             ),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Text(
-                  'YOUR QUEUE NUMBER',
-                  style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.grey[800],
-                  ),
-                ),
-                SizedBox(height: 10),
-                Text(
-                  '$userQueueNumber',
-                  style: TextStyle(
-                    fontSize: 32,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.blue[700],
-                  ),
-                ),
-                SizedBox(height: 30),
-                Text(
-                  'CURRENT QUEUE',
-                  style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.grey[800],
-                  ),
-                ),
-                SizedBox(height: 10),
-                Text(
-                  '$currentQueue',
-                  style: TextStyle(
-                    fontSize: 32,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.blue[700],
-                  ),
-                ),
-                SizedBox(height: 30),
-                Text(
-                  'ESTIMATED WAITING TIME',
-                  style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.grey[800],
-                  ),
-                ),
-                SizedBox(height: 10),
-                Text(
-                  '$estimatedWaitingTime minutes',
-                  style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.blue[700],
-                  ),
-                ),
-                SizedBox(height: 30),
-                ElevatedButton(
-                  onPressed: () {
-                    // Navigate back to the QueueStatusPage
-                  },
-                  style: ElevatedButton.styleFrom(
-                    primary: Colors.blue[700],
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10),
+          ),
+          Center(
+            child: ConstrainedBox(
+              constraints: BoxConstraints(
+                maxHeight: 450,
+                maxWidth: 300,
+              ),
+              child: Container(
+                padding: EdgeInsets.all(25),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(15),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.teal.withOpacity(0.3),
+                      spreadRadius: 5,
+                      blurRadius: 15,
+                      offset: Offset(0, 3),
                     ),
-                    padding: EdgeInsets.symmetric(horizontal: 135, vertical: 15),
-                  ),
-                  child: Text(
-                    'BACK',
-                    style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
-                    ),
-                  ),
+                  ],
                 ),
-                SizedBox(height: 20),
-                ElevatedButton(
-                  onPressed: () {
-                    // Handle the "Cancel Queue" action
-                    showDialog(
-                      context: context,
-                      builder: (BuildContext context) {
-                        return AlertDialog(
-                          title: Text('Queue Cancellation'),
-                          content: Text('Are you sure you want to cancel your queue?'),
-                          actions: [
-                            TextButton(
-                              onPressed: () {
-                                // Perform the actual queue cancellation
-                                Navigator.of(context).pop(); // Close the dialog
-                                // Display a snackbar or navigate to another screen
-                                ScaffoldMessenger.of(context).showSnackBar(
-                                  SnackBar(
-                                    content: Text('Your queue has been successfully canceled.'),
-                                    duration: Duration(seconds: 3),
-                                  ),
-                                );
-                                // Navigate back to the QueueStatusPage or another relevant screen
-                                Navigator.of(context).pop(); // Navigate back to the previous screen
-                              },
-                              child: Text('YES'),
-                            ),
-                            TextButton(
-                              onPressed: () {
-                                Navigator.of(context).pop(); // Close the dialog
-                              },
-                              child: Text('NO'),
-                            ),
-                          ],
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: <Widget>[
+                    Text(
+                      'YOUR QUEUE NUMBER',
+                      style: TextStyle(
+                        fontSize: 12,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.teal[700],
+                        letterSpacing: 1.5,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                    SizedBox(height: 10),
+                    Text(
+                      '$userQueueNumber',
+                      style: TextStyle(
+                        fontSize: 48,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.teal,
+                        shadows: [
+                          Shadow(
+                            blurRadius: 10.0,
+                            color: Colors.black45,
+                            offset: Offset(2.0, 2.0),
+                          ),
+                        ],
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                    SizedBox(height: 10),
+                    Divider(
+                      color: Colors.teal[200],
+                      thickness: 1.5,
+                      indent: 30,
+                      endIndent: 30,
+                      height: 40,
+                    ),
+                    SizedBox(height: 30),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Expanded(
+                          child: Column(
+                            children: [
+                              Text(
+                                'CURRENT QUEUE',
+                                style: TextStyle(
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.teal[700],
+                                  letterSpacing: 1.5,
+                                ),
+                                textAlign: TextAlign.center,
+                              ),
+                              SizedBox(height: 10),
+                              Text(
+                                currentQueue != null ? '$currentQueue' : 'N/A',
+                                style: TextStyle(
+                                  fontSize: 48,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.teal,
+                                  shadows: [
+                                    Shadow(
+                                      blurRadius: 10.0,
+                                      color: Colors.black45,
+                                      offset: Offset(2.0, 2.0),
+                                    ),
+                                  ],
+                                ),
+                                textAlign: TextAlign.center,
+                              ),
+                            ],
+                          ),
+                        ),
+                        SizedBox(width: 30),
+                        Expanded(
+                          child: Column(
+                            children: [
+                              Text(
+                                'PEOPLE AHEAD',
+                                style: TextStyle(
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.teal[700],
+                                  letterSpacing: 1.5,
+                                ),
+                                textAlign: TextAlign.center,
+                              ),
+                              SizedBox(height: 10),
+                              Text(
+                                '$peopleInFront',
+                                style: TextStyle(
+                                  fontSize: 48,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.teal,
+                                  shadows: [
+                                    Shadow(
+                                      blurRadius: 10.0,
+                                      color: Colors.black45,
+                                      offset: Offset(2.0, 2.0),
+                                    ),
+                                  ],
+                                ),
+                                textAlign: TextAlign.center,
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                    SizedBox(height: 30),
+                    ElevatedButton(
+                      onPressed: () {
+                        showDialog(
+                          context: context,
+                          builder: (BuildContext context) {
+                            return AlertDialog(
+                              title: Text('Queue Cancellation'),
+                              content: Text('Are you sure you want to cancel your queue?'),
+                              actions: [
+                                TextButton(
+                                  onPressed: () {
+                                    Navigator.of(context).pop();
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                      SnackBar(
+                                        content: Text('Your queue has been successfully canceled.'),
+                                        duration: Duration(seconds: 3),
+                                      ),
+                                    );
+                                    Navigator.of(context).pop();
+                                  },
+                                  child: Text('YES'),
+                                ),
+                                TextButton(
+                                  onPressed: () {
+                                    Navigator.of(context).pop();
+                                  },
+                                  child: Text('NO'),
+                                ),
+                              ],
+                            );
+                          },
                         );
                       },
-                    );
-                  },
-                  style: ElevatedButton.styleFrom(
-                    primary: Colors.red[700],
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.redAccent,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        padding: EdgeInsets.symmetric(horizontal: 50, vertical: 15),
+                      ),
+                      child: Text(
+                        'CANCEL QUEUE',
+                        style: TextStyle(
+                          fontSize: 13,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
+                        ),
+                      ),
                     ),
-                    padding: EdgeInsets.symmetric(horizontal: 90, vertical: 15),
-                  ),
-                  child: Text(
-                    'CANCEL QUEUE',
-                    style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
-                    ),
-                  ),
+                  ],
                 ),
-              ],
+              ),
             ),
           ),
-        ),
+        ],
       ),
     );
   }

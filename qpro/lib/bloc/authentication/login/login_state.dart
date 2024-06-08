@@ -17,7 +17,6 @@ class UserLoginSuccessState extends AuthState {}
 class LoginErrorState extends AuthState {
   final String message;
   LoginErrorState({required this.message});
-
 }
 
 class RefreshTokenSuccess extends AuthState{}

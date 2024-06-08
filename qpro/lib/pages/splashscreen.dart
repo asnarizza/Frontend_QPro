@@ -1,12 +1,12 @@
 import 'package:qpro/pages/authentication/login.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:hexcolor/hexcolor.dart';
 import 'package:qpro/pages/routepage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:qpro/bloc/authentication/login/login_state.dart';
 import 'package:qpro/bloc/authentication/login/login_bloc.dart';
 import 'package:qpro/bloc/authentication/login/login_event.dart';
+import 'package:lottie/lottie.dart';
 
 class Splash extends StatefulWidget {
   const Splash({Key? key}) : super(key: key);
@@ -71,22 +71,18 @@ class _SplashState extends State<Splash> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              Text(
-                'QPro',
-                style: Theme.of(context).textTheme.bodyLarge,
+              Lottie.asset(
+                'assets/lottie/logo.json', // Replace with your file name
+                width: 500,
+                height: 500,
               ),
               SizedBox(height: 10.0),
-              // Container(
-              //   child: Image.asset('assets/logo.png', width: 200.0),
-              //   alignment: Alignment.center,
-              // ),
-              SizedBox(height: 10.0),
-              Text('First in line, first in time',
+              Text(
+                'First in line, first in time',
                 style: Theme.of(context).textTheme.bodyMedium,
               ),
               SizedBox(height: 5.0),
               CircularProgressIndicator(color: Colors.lightBlue[100]),
-
             ],
           ),
         ),

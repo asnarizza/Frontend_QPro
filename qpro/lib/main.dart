@@ -12,7 +12,7 @@ void main() {
   WidgetsFlutterBinding.ensureInitialized();
   OneSignal.Debug.setLogLevel(OSLogLevel.verbose);
   OneSignal.Debug.setAlertLevel(OSLogLevel.none);
-  OneSignal.initialize("2c9ce8b1-a075-4864-83a3-009c8497310e");
+  OneSignal.initialize("8720edb2-97e5-45eb-b551-552c92cc8834");
   OneSignal.Notifications.requestPermission(true);
   OneSignal.Notifications.addPermissionObserver((state) {
     print("Has permission " + state.toString());

@@ -43,7 +43,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
         } else if (state is RegisterLoadingState) {
           return Padding(
             padding: EdgeInsets.all(8.0),
-            child: Center(child: CircularProgressIndicator(color: Colors.grey)),
+            child: Center(
+                child: CircularProgressIndicator(
+                    color: Colors.grey)),
           );
         } else {
           return Container();
@@ -62,26 +64,35 @@ class _RegisterScreenState extends State<RegisterScreen> {
             );
           }
         },
-        child: Center(
-          child: SingleChildScrollView(
-            child: Padding(
-              padding: const EdgeInsets.all(24.0),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  _logoText(),
-                  const SizedBox(height: 30.0),
-                  _usernameField(),
-                  const SizedBox(height: 10.0),
-                  _phoneField(),
-                  const SizedBox(height: 10.0),
-                  _emailField(),
-                  const SizedBox(height: 10.0),
-                  _passwordField(),
-                  msg,
-                  const SizedBox(height: 30.0),
-                  _registerButton(),
-                ],
+        child: Container(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              colors: [Colors.teal.shade100, Colors.teal.shade300],
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+            ),
+          ),
+          child: Center(
+            child: SingleChildScrollView(
+              child: Padding(
+                padding: const EdgeInsets.all(24.0),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    _logoText(),
+                    const SizedBox(height: 30.0),
+                    _usernameField(),
+                    const SizedBox(height: 10.0),
+                    _phoneField(),
+                    const SizedBox(height: 10.0),
+                    _emailField(),
+                    const SizedBox(height: 10.0),
+                    _passwordField(),
+                    msg,
+                    const SizedBox(height: 30.0),
+                    _registerButton(),
+                  ],
+                ),
               ),
             ),
           ),
@@ -93,7 +104,14 @@ class _RegisterScreenState extends State<RegisterScreen> {
   Widget _logoText() {
     return Padding(
       padding: const EdgeInsets.all(8.0),
-      child: Text('QPro', style: Theme.of(context).textTheme.bodyLarge),
+      child: Text(
+        'QPro',
+        style: TextStyle(
+          color: Colors.teal.shade900,
+          fontSize: 28,
+          fontWeight: FontWeight.bold,
+        ),
+      ),
     );
   }
 
@@ -101,18 +119,21 @@ class _RegisterScreenState extends State<RegisterScreen> {
     return TextFormField(
       controller: usernameController,
       decoration: InputDecoration(
-        prefixIcon: Icon(Icons.person, color: Colors.black),
-        hintText: 'Username',
-        focusColor: Colors.black,
+        labelText: 'Name',
+        labelStyle: TextStyle(color: Colors.teal.shade900),
+        prefixIcon: Icon(Icons.email, color: Colors.teal.shade900),
         focusedBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: Colors.black, width: 1.0),
+          borderSide: BorderSide(color: Colors.teal.shade900, width: 1.0),
           borderRadius: BorderRadius.circular(10),
         ),
         enabledBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: Colors.black, width: 1.0),
+          borderSide: BorderSide(color: Colors.teal.shade900, width: 1.0),
           borderRadius: BorderRadius.circular(10),
         ),
+        filled: true,
+        fillColor: Colors.white.withOpacity(0.9),
       ),
+      style: TextStyle(fontSize: 16),
     );
   }
 
@@ -120,18 +141,21 @@ class _RegisterScreenState extends State<RegisterScreen> {
     return TextFormField(
       controller: phoneController,
       decoration: InputDecoration(
-        prefixIcon: Icon(Icons.phone, color: Colors.black),
-        hintText: 'Phone Number',
-        focusColor: Colors.black,
+        labelText: 'Phone Number',
+        labelStyle: TextStyle(color: Colors.teal.shade900),
+        prefixIcon: Icon(Icons.phone, color: Colors.teal.shade900),
         focusedBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: Colors.black, width: 1.0),
+          borderSide: BorderSide(color: Colors.teal.shade900, width: 1.0),
           borderRadius: BorderRadius.circular(10),
         ),
         enabledBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: Colors.black, width: 1.0),
+          borderSide: BorderSide(color: Colors.teal.shade900, width: 1.0),
           borderRadius: BorderRadius.circular(10),
         ),
+        filled: true,
+        fillColor: Colors.white.withOpacity(0.9),
       ),
+      style: TextStyle(fontSize: 16),
     );
   }
 
@@ -139,18 +163,21 @@ class _RegisterScreenState extends State<RegisterScreen> {
     return TextFormField(
       controller: emailController,
       decoration: InputDecoration(
-        prefixIcon: Icon(Icons.email, color: Colors.black),
-        hintText: 'Email',
-        focusColor: Colors.black,
+        labelText: 'Email',
+        labelStyle: TextStyle(color: Colors.teal.shade900),
+        prefixIcon: Icon(Icons.email, color: Colors.teal.shade900),
         focusedBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: Colors.black, width: 1.0),
+          borderSide: BorderSide(color: Colors.teal.shade900, width: 1.0),
           borderRadius: BorderRadius.circular(10),
         ),
         enabledBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: Colors.black, width: 1.0),
+          borderSide: BorderSide(color: Colors.teal.shade900, width: 1.0),
           borderRadius: BorderRadius.circular(10),
         ),
+        filled: true,
+        fillColor: Colors.white.withOpacity(0.9),
       ),
+      style: TextStyle(fontSize: 16),
     );
   }
 
@@ -159,17 +186,21 @@ class _RegisterScreenState extends State<RegisterScreen> {
       obscureText: true,
       controller: passwordController,
       decoration: InputDecoration(
-        prefixIcon: Icon(Icons.lock, color: Colors.black),
-        hintText: 'Password',
+        labelText: 'Password',
+        labelStyle: TextStyle(color: Colors.teal.shade900),
+        prefixIcon: Icon(Icons.lock, color: Colors.teal.shade900),
         focusedBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: Colors.black, width: 1.0),
+          borderSide: BorderSide(color: Colors.teal.shade900, width: 1.0),
           borderRadius: BorderRadius.circular(10),
         ),
         enabledBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: Colors.black, width: 1.0),
+          borderSide: BorderSide(color: Colors.teal.shade900, width: 1.0),
           borderRadius: BorderRadius.circular(10),
         ),
+        filled: true,
+        fillColor: Colors.white.withOpacity(0.9),
       ),
+      style: TextStyle(fontSize: 16),
     );
   }
 
@@ -177,7 +208,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
     return Padding(
       padding: const EdgeInsets.all(17.0),
       child: SizedBox(
-        width: 400.0,
+        width: double.infinity,
         height: 55.0,
         child: ElevatedButton(
           onPressed: () {
@@ -197,19 +228,24 @@ class _RegisterScreenState extends State<RegisterScreen> {
               registerBloc.add(EmptyField() as RegisterEvent);
             }
           },
-          style: ButtonStyle(
-            shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
+          style: ElevatedButton.styleFrom(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(10.0),
             ),
-            backgroundColor: MaterialStateProperty.all<Color>(Colors.blue),
+            backgroundColor: Colors.teal.shade700,
           ),
           child: const Padding(
             padding: EdgeInsets.all(12.0),
-            child: Text('REGISTER', style: TextStyle(fontSize: 16)),
+            child: Text(
+              'REGISTER',
+              style: TextStyle(
+                fontSize: 16,
+                color: Colors.white, // Change this to your desired color
+              ),
+            ),
           ),
         ),
       ),
     );
   }
 }
-
