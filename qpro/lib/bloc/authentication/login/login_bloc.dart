@@ -35,7 +35,7 @@ class AuthBloc extends Bloc<AuthEvents, AuthState>{
       print(isValidLogin);
       if (isValidLogin == 1)
       {
-        OneSignal.login(event.email);
+        //OneSignal.login(event.email);
         emit(UserLoginSuccessState());
       }
       else if (isValidLogin == 0)

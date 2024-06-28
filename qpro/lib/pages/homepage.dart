@@ -143,13 +143,24 @@ class _HomePageState extends State<HomePage> {
             if (response.statusCode == 201) {
               final jsonResponse = jsonDecode(response.body);
               String queueNumber = jsonResponse['queue_number'].toString();
-              String currentQueue = jsonResponse['current_queue']?.toString() ?? '0';
+              //String currentQueue = jsonResponse['current_queue']?.toString() ?? '0';
+              int totalPeopleInQueue = jsonResponse['total_people_ahead'];
+              int estimatedWaitingTime = jsonResponse['estimated_waiting_time']; // Get the estimated waiting time
+
+              // // Navigate to QueueDisplayPage
+              // Navigator.of(context).push(MaterialPageRoute(
+              //   builder: (context) => QueueDisplayPage(
+              //     userQueueNumber: int.parse(queueNumber),
+              //     //currentQueue: int.parse(currentQueue),
+              //   ),
+              // ));
 
               // Navigate to QueueDisplayPage
               Navigator.of(context).push(MaterialPageRoute(
                 builder: (context) => QueueDisplayPage(
                   userQueueNumber: int.parse(queueNumber),
-                  currentQueue: int.parse(currentQueue),
+                  totalPeopleInQueue: totalPeopleInQueue, // Add this line
+                  estimatedWaitingTime: estimatedWaitingTime, // Add this line
                 ),
               ));
 

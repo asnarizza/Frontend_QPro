@@ -1,6 +1,6 @@
 class APIConstant {
 
-  static const String ipaddress = "http://10.131.73.131:8000";
+  static const String ipaddress = "http://192.168.1.105:8000";
 
   static const String URL = "${ipaddress}/api/";
 
@@ -29,4 +29,5 @@ class APIConstant {
   static String get GetDeptCtrURL => "${APIConstant.URL}department-counter/";
   static String get GetCtrByDptURL => "${APIConstant.URL}counters-by-department/";
   static String get CounterURL => "${APIConstant.URL}assign-new-counter-id";
+  static String get StatisticURL => "${APIConstant.URL}department-statistics";
 }

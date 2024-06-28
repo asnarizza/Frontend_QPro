@@ -5,6 +5,7 @@ import 'package:http/http.dart' as http;
 import 'package:qpro/pages/authentication/login.dart';
 import 'package:qpro/repository/api_constant.dart';
 import 'package:stop_watch_timer/stop_watch_timer.dart';
+import 'package:qpro/repository/notification_repo.dart';
 
 class StaffHomePage extends StatefulWidget {
   final int userId; // Add a parameter for staff ID
@@ -259,6 +260,8 @@ class _StaffHomePageState extends State<StaffHomePage> {
             _stopWatchTimer.onStartTimer();
             _showQueueActionDialog(queueNumber);
           });
+          // Send notification about the queue number being called
+          await sendQueueNotification(queueNumber);
         }
       } else {
         setState(() {

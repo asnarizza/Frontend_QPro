@@ -101,6 +101,7 @@ class AuthRepository{
       if (response.statusCode == 200){
         String data =  response.body;
         pref.setString("token", data);
+        pref.setString("email", email);
         return 0;
       }
       else {

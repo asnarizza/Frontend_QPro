@@ -1,24 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:onesignal_flutter/onesignal_flutter.dart';
 
 class QueueDisplayPage extends StatelessWidget {
   final int userQueueNumber;
-  final int? currentQueue;
-  final int? totalPeopleInQueue;
-  //
+  final int totalPeopleInQueue;
+  final int estimatedWaitingTime;
   final VoidCallback? onQueueCalled;
 
   QueueDisplayPage({
     required this.userQueueNumber,
-    this.currentQueue,
-    this.totalPeopleInQueue,
-    //
+    int? totalPeopleInQueue,
+    required this.estimatedWaitingTime,
     this.onQueueCalled,
-  });
+  }) : totalPeopleInQueue = totalPeopleInQueue ?? 0;
 
   @override
   Widget build(BuildContext context) {
-    int peopleInFront = currentQueue != null ? ((currentQueue! - userQueueNumber).clamp(0, double.infinity) as int) : 0;
-
+    OneSignal.login(userQueueNumber.toString());
     return Scaffold(
       appBar: AppBar(
         title: Text('Queue Ticket'),
@@ -102,7 +100,7 @@ class QueueDisplayPage extends StatelessWidget {
                           child: Column(
                             children: [
                               Text(
-                                'CURRENT QUEUE',
+                                'ESTIMATED WAITING TIME',
                                 style: TextStyle(
                                   fontSize: 12,
                                   fontWeight: FontWeight.bold,
@@ -113,9 +111,9 @@ class QueueDisplayPage extends StatelessWidget {
                               ),
                               SizedBox(height: 10),
                               Text(
-                                currentQueue != null ? '$currentQueue' : 'N/A',
+                                '$estimatedWaitingTime min', // Add this line
                                 style: TextStyle(
-                                  fontSize: 48,
+                                  fontSize: 20,
                                   fontWeight: FontWeight.bold,
                                   color: Colors.teal,
                                   shadows: [
@@ -147,9 +145,9 @@ class QueueDisplayPage extends StatelessWidget {
                               ),
                               SizedBox(height: 10),
                               Text(
-                                '$peopleInFront',
+                                '$totalPeopleInQueue',
                                 style: TextStyle(
-                                  fontSize: 48,
+                                  fontSize: 20,
                                   fontWeight: FontWeight.bold,
                                   color: Colors.teal,
                                   shadows: [

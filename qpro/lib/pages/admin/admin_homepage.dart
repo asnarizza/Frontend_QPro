@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:qpro/pages/admin/counter.dart';
 import 'package:qpro/pages/admin/department.dart';
 import 'package:qpro/pages/admin/counter.dart';
+import 'package:qpro/pages/admin/statistic.dart';
 
 import '../authentication/login.dart';
 import 'assign_staff.dart';
+
 
 class AdminHomePage extends StatefulWidget {
   @override
@@ -15,7 +17,10 @@ class _AdminHomePageState extends State<AdminHomePage> {
   String department = "Admin Department";
 
   void _viewStatistics() {
-    // Implement view statistics logic here
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => DepartmentStatisticsPage()),
+    );
   }
 
   // void _addDepartment() {
